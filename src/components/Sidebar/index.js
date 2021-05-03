@@ -5,13 +5,17 @@ import useUser from '../../hooks/use-user';
 
 export default function Sidebar() {
   const {
-    user: { userId, username, fullName },
+    user: { docId, userId, username, fullName, following },
   } = useUser();
-  console.log(username, userId, fullName);
+  // console.log(following);
   return (
     <div className="p-4">
-      <User />
-      <Suggestions />
+      <User username={username} fullName={fullName} />
+      <Suggestions
+        userId={userId}
+        following={following}
+        loggedInUserDocId={docId}
+      />
     </div>
   );
 }
