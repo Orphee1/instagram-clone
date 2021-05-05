@@ -1,13 +1,11 @@
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
-
+  future: { removeDeprecatedGapUtilities: true },
   theme: {
-    fill: (theme) => ({
-      red: theme('colors.red.primary '),
-    }),
+    fill: (theme) => ({ red: theme('colors.red.primary') }),
     colors: {
-      white: '#fff',
+      white: '#ffff',
       blue: {
         medium: '#005c98',
       },

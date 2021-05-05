@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 import Image from './Image';
 import Actions from './Actions';
+import Footer from './Footer';
 
 export default function Post({ photo }) {
   console.log(photo);
@@ -18,6 +19,7 @@ export default function Post({ photo }) {
         likedPhoto={photo.userLikedPhoto}
         handleFocus={handleFocus}
       />
+      <Footer username={photo.username} caption={photo.caption} />
     </div>
   );
 }
