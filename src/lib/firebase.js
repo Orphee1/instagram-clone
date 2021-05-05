@@ -3,7 +3,8 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  // apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  apiKey: 'AIzaSyAGL3XG4caO6aDGpq0AKYhQ5QR8u - cGe48',
   authDomain: 'instagram-hl.firebaseapp.com',
   projectId: 'instagram-hl',
   storageBucket: 'instagram-hl.appspot.com',
