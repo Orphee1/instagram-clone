@@ -16,6 +16,7 @@ export default function useAuthListener() {
         setUser(authUser);
       } else {
         // WXe don't have an authUser, clear localstorage
+        console.log('here we are');
         localStorage.removeItem('authUser');
         setUser(null);
       }
