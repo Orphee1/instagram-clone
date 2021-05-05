@@ -4,7 +4,7 @@ import { getPhotos, getUserByUserId } from '../services/firebase';
 
 export default function usePhotos() {
   const [photos, setPhotos] = useState(null);
-  // const data = useContext(UserContext);
+
   const {
     user: { uid: userId },
   } = useContext(UserContext);
