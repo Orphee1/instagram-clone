@@ -4,6 +4,7 @@ import Header from './Header';
 import Image from './Image';
 import Actions from './Actions';
 import Footer from './Footer';
+import Comments from './Comments';
 
 export default function Post({ photo }) {
   console.log(photo);
@@ -20,6 +21,12 @@ export default function Post({ photo }) {
         handleFocus={handleFocus}
       />
       <Footer username={photo.username} caption={photo.caption} />
+      <Comments
+        docId={photo.docId}
+        comments={photo.comments}
+        posted={photo.dateCreated}
+        commentInput={commentInput}
+      />
     </div>
   );
 }
