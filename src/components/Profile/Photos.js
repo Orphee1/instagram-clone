@@ -18,7 +18,7 @@ export default function Photos({ photos }) {
                 alt=""
                 className=""
               />
-              <div className="absolute bottom-0 left-0 bg-gray-200 z-10 w-full justify-evenly items-center h-full bg-black-faded group-hover:flex ">
+              <div className="absolute bottom-0 left-0 bg-gray-200 z-10 w-full justify-evenly items-center h-full bg-black-faded group-hover:flex hidden">
                 <p className="flex items-center text-white font-bold">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +54,10 @@ export default function Photos({ photos }) {
           ))
         ) : null}
       </div>
+      {!photos ||
+        (photos.length === 0 && (
+          <p className="text-center text-2xl ">No Posts Yet</p>
+        ))}
     </div>
   );
 }
