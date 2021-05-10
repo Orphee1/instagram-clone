@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import useUser from '../../hooks/use-user';
 import { isUserFollowingProfile, toggleFollow } from '../../services/firebase';
+import UserContext from '../../context/user';
 
 export default function Header({
   photosCount,
@@ -10,18 +11,17 @@ export default function Header({
     docId: profileDocId,
     userId: profileUserId,
     fullName,
-    following = [],
-    followers = [],
+    following,
+    followers,
     username: profileUserName,
   },
   followerCount,
   setFollowerCount,
 }) {
-  // console.log(followerCount);
-
-  const { user } = useUser();
+  const { user: loggedInUser } = useContext(UserContext);
+  const { user } = useUser(loggedInUser?.uid);
   const [isFollowingProfile, setIsFollowngProfile] = useState(false);
-  const activeBtnFollow = user.username && user.username !== profileUserName;
+  const activeBtnFollow = user?.username && user?.username !== profileUserName;
 
   useEffect(() => {
     const isLoggedInUserFollowingProfile = async () => {
@@ -32,10 +32,10 @@ export default function Header({
       setIsFollowngProfile(!!isFollowing); // Double mark turns into a boolean
     };
 
-    if (user.username && profileUserId) {
+    if (user?.username && profileUserId) {
       isLoggedInUserFollowingProfile();
     }
-  }, [user.username, profileUserId]);
+  }, [user?.username, profileUserId]);
 
   const handleToggleFollow = async () => {
     setIsFollowngProfile((isFollowingProfile) => !isFollowingProfile);
@@ -53,11 +53,18 @@ export default function Header({
 
   return (
     <div className="grid grid-cols-3 gap-4 justify-between mx-auto max-w-screen-lg ">
-      <div className="container flex justify-center">
-        {user.username && (
+      <div className="container flex justify-center items-center">
+        {/* {user.username && ( */}
+        {profileUserName ? (
           <img
             src={`/images/avatars/${profileUserName}.jpeg`}
             alt={`${user.username} profile picture`}
+            className="rounded-full h-40 w-40 flex"
+          />
+        ) : (
+          <img
+            src={`/images/avatars/default.png`}
+            alt="default profile picture"
             className="rounded-full h-40 w-40 flex"
           />
         )}
